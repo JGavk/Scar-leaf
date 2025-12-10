@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
   
@@ -68,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
         StopCoroutine(HealthDecayLoop());
         
         Debug.Log("Player has died!");
+        SceneManager.LoadScene("StartScene");
         
     }
 }
