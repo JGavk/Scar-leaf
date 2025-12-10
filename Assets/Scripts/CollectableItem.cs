@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CollectableItem : MonoBehaviour
 {
+    [SerializeField] private AudioClip pickupSound;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -14,6 +15,11 @@ public class CollectableItem : MonoBehaviour
 
                 healthScript.Heal(10); 
             }
+            if (pickupSound != null)
+        {
+
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+        }
 
             Destroy(gameObject); 
         }

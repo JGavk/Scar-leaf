@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     private CharacterController cc; 
     public SpriteRenderer sr;
     [SerializeField] private Animator anim;
-
+    [SerializeField] private AudioClip footstepSound; 
+    private AudioSource audioSource;
     private Vector3 moveDirection; 
 
     void Start()
@@ -16,11 +17,19 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
+        audioSource = GetComponent<AudioSource>();
         if (cc == null) Debug.LogError("CharacterController component is missing!");
         if (sr == null) Debug.LogError("SpriteRenderer component is missing!");
+        if (anim == null) Debug.LogWarning("Animator component is missing!");
+        if (audioSource == null) Debug.LogError("AudioSource component is missing!");
     }
-
+    public void PlayFootstepSound()
+    {
+        if (audioSource != null && footstepSound != null)
+    {
+            audioSource.PlayOneShot(footstepSound);
+    }
+}
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
